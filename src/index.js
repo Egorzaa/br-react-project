@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { App } from "./Screens/App";
 import reportWebVitals from "./reportWebVitals";
-
-const name = "Vasja";
+import { Router } from "./Routing/Router";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App name={name} />
+    <Router />
   </React.StrictMode>,
   document.getElementById("root")
 );

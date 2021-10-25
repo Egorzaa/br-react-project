@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Avatar } from "@mui/material";
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
@@ -8,7 +7,7 @@ import MessageList from "../../MessageList";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-export const App = ({ name }) => {
+export const App = () => {
   const [text, setText] = useState("");
   const [messageList] = useState(["1", "2"]);
 
@@ -24,7 +23,7 @@ export const App = ({ name }) => {
     <div className="App">
       <header className="App-header">
         <Avatar src="/static/1.jpg" alt="Remy Sharp" />
-        <h1>Hello, {name}</h1>
+
         <Counter />
         <br />
         <br />
@@ -40,17 +39,11 @@ export const App = ({ name }) => {
         <br />
         <Counter />
         <br />
-        <MessageList messageList={messageList} />
+        <MessageList
+          messageList={messageList}
+          render={(color) => <div style={{ color }}>some text</div>}
+        ></MessageList>
       </header>
     </div>
   );
-};
-
-App.propTypes = {
-  name: PropTypes.string.isRequired,
-  qwerty: PropTypes.number,
-};
-
-App.defaultProps = {
-  qwerty: 3124132,
 };
