@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withLoggerHOC } from "../../HOCS/withLoggerHOC";
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
@@ -13,3 +14,5 @@ export const Counter = () => {
     </>
   );
 };
+
+export default withLoggerHOC(Counter);

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Router } from "./Routing/Router";
+import { store } from "./Store";
+
+export const MyContext = createContext({ color: "red" });
+export const MyAnotherContext = createContext({ color: "red" });
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <Provider store={store}>
+      <MyContext.Provider value={{ color: "blue" }}>
+        <MyAnotherContext.Provider value={{ color: "blue" }}>
+          <Router />
+        </MyAnotherContext.Provider>
+      </MyContext.Provider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

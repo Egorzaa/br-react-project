@@ -2,14 +2,18 @@ import { Avatar } from "@mui/material";
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "../../Component/Counter";
+import CounterWithLogger, { Counter } from "../../Component/Counter/Counter";
 import MessageList from "../../MessageList";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { MyContext } from "../..";
 
 export const App = () => {
   const [text, setText] = useState("");
   const [messageList] = useState(["1", "2"]);
+
+  const { color } = useContext(MyContext);
 
   const ref = useRef(undefined);
 
@@ -39,10 +43,10 @@ export const App = () => {
         <br />
         <Counter />
         <br />
-        <MessageList
-          messageList={messageList}
-          render={(color) => <div style={{ color }}>some text</div>}
-        ></MessageList>
+        <MessageList messageList={messageList}></MessageList>
+
+        <div style={{ color }}>some text</div>
+        <CounterWithLogger name={"Vasja"} />
       </header>
     </div>
   );
