@@ -6,6 +6,7 @@ const initialState = {
 };
 
 export const profileReducer = (store = initialState, action) => {
+  console.log("i am in reducer");
   switch (action.type) {
     case TOGGLE_SHOW_NAME_ACTION:
       return {

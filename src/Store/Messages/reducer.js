@@ -2,7 +2,7 @@ import { ADD_MESSAGE_ACTION } from "./constants";
 
 const initialState = {
   // {chatId: [{id, message, author, ....}]}
-  messageList: {},
+  messageList: { id1: [] },
 };
 
 export const messagesReducer = (store = initialState, action) => {

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addMessageActionWithThunk } from "../../Store/Messages/actions";
 import {
   toggleShowNameAction,
   changeUserNameAction,
@@ -12,7 +13,14 @@ export const Profile = () => {
   const dispatch = useDispatch();
 
   const handleToggleShowName = () => {
-    dispatch(toggleShowNameAction());
+    // dispatch(toggleShowNameAction());
+    dispatch(
+      addMessageActionWithThunk({
+        message: "some text",
+        author: "Egor",
+        chatId: "123456789",
+      })
+    );
   };
 
   const handleUserNameChange = useCallback(

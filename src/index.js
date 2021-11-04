@@ -1,10 +1,12 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Router } from "./Routing/Router";
-import { store } from "./Store";
+import { persistor, store } from "./Store";
 
 export const MyContext = createContext({ color: "red" });
 export const MyAnotherContext = createContext({ color: "red" });
@@ -12,11 +14,13 @@ export const MyAnotherContext = createContext({ color: "red" });
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <MyContext.Provider value={{ color: "blue" }}>
-        <MyAnotherContext.Provider value={{ color: "blue" }}>
-          <Router />
-        </MyAnotherContext.Provider>
-      </MyContext.Provider>
+      <PersistGate persistor={persistor}>
+        <MyContext.Provider value={{ color: "blue" }}>
+          <MyAnotherContext.Provider value={{ color: "blue" }}>
+            <Router />
+          </MyAnotherContext.Provider>
+        </MyContext.Provider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
