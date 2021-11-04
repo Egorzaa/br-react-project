@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const MessageList = ({ messageList }) => {
+export const MessageList = ({ messageList }) => {
   return (
     <>
       {messageList.map((message, i) => (
@@ -9,5 +9,3 @@ const MessageList = ({ messageList }) => {
     </>
   );
 };
-
-export default MessageList;

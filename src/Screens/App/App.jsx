@@ -1,13 +1,11 @@
+import { useEffect, useRef, useContext, useState } from "react";
 import { Avatar } from "@mui/material";
 import { TextField } from "@material-ui/core";
-import { useState } from "react";
-import "./App.css";
-import CounterWithLogger, { Counter } from "../../Component/Counter/Counter";
-import MessageList from "../../MessageList";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+
+import CounterWithLogger, { Counter } from "../../Components/Counter/Counter";
+import { MessageList } from "../../Components/MessageList";
 import { MyContext } from "../..";
+import "./App.css";
 
 export const App = () => {
   const [text, setText] = useState("");

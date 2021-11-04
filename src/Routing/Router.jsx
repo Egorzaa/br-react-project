@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import { App } from "../Screens/App";
 import { Chats } from "../Screens/Chats";
-import { Profile } from "../Screens/Profile";
+import Profile from "../Screens/Profile";
 import { ROUTES } from "./constants";
 
 export const Router = () => {
