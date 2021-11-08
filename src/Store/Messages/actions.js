@@ -7,7 +7,6 @@ export const addMessageAction = ({ message, author, chatId }) => ({
 
 export const addMessageActionWithThunk = (payload) => (dispatch, getState) => {
   dispatch(addMessageAction(payload));
-
   if (payload.author === "Bot") {
     setTimeout(() => {
       const botAnswer = {

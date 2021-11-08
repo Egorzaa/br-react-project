@@ -13,7 +13,7 @@ export const Profile = () => {
   const dispatch = useDispatch();
 
   const handleToggleShowName = () => {
-    // dispatch(toggleShowNameAction());
+    dispatch(toggleShowNameAction());
     dispatch(
       addMessageActionWithThunk({
         message: "some text",
