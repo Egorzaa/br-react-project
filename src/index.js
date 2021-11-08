@@ -2,11 +2,10 @@ import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import CircularProgress from "@mui/material/CircularProgress";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Router } from "./Routing/Router";
 import { persistor, store } from "./Store";
+import "./index.css";
 
 export const MyContext = createContext({ color: "red" });
 export const MyAnotherContext = createContext({ color: "red" });
