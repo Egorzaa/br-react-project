@@ -1,12 +1,13 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
+import storage from "redux-persist/lib/storage";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 
 import { middleware } from "../Middlewares/middleware";
 import { chatsReducer } from "./Chats/reducer";
 import { messagesReducer } from "./Messages/reducer";
 import { profileReducer } from "./Profile/reducer";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { dogsReducer } from "./Dogs/reducer";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   chats: chatsReducer,
   messages: messagesReducer,
+  dogs: dogsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
