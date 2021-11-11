@@ -17,6 +17,4 @@ export const addMessageActionWithThunk = (payload) => (dispatch, getState) => {
       dispatch(addMessageAction(botAnswer));
     }, 1500);
   }
-
-  console.log("i am in addMessageActionWithThunk");
 };
