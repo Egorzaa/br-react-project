@@ -1,3 +1,5 @@
+import firebase from "firebase";
+import { useEffect } from "react";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageActionWithThunk } from "../../Store/Messages/actions";
@@ -12,6 +14,19 @@ export const Profile = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const uid = firebase.auth().currentUser.uid;
+
+    firebase
+      .database()
+      .ref("profile")
+      .child(uid)
+      .on("value", (snapshot) => {
+        snapshot.forEach();
+        console.log(snapshot.val());
+      });
+  }, []);
+
   const handleToggleShowName = () => {
     dispatch(toggleShowNameAction());
     dispatch(
@@ -23,12 +38,16 @@ export const Profile = () => {
     );
   };
 
-  const handleUserNameChange = useCallback(
-    (e) => {
-      dispatch(changeUserNameAction(e.target.value));
-    },
-    [dispatch]
-  );
+  const handleUserNameChange = (e) => {
+    dispatch(changeUserNameAction(e.target.value));
+    const uid = firebase.auth().currentUser.uid;
+    firebase
+      .database()
+      .ref("profile")
+      .child(uid)
+      .child("name")
+      .set(e.target.value);
+  };
 
   return (
     <div>

@@ -6,4 +6,6 @@ export const ROUTES = {
   NOCHAT: "/no-chat",
   NOT_FOUND: "/not-found",
   DOGS: "/dogs",
+  SIGNUP: "/signup",
+  SIGNIN: "/signin",
 };

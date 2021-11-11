@@ -1,12 +1,35 @@
 import React from "react";
+import firebase from "firebase";
+import { CircularProgress } from "@mui/material";
+import { useEffect } from "react";
 import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import { App } from "../Screens/App";
 import { Chats } from "../Screens/Chats";
 import { Dogs } from "../Screens/Dogs";
 import Profile from "../Screens/Profile";
+import { Signin } from "../Screens/Signin/Signin";
+import { Signup } from "../Screens/Signup";
 import { ROUTES } from "./constants";
+import { useState } from "react";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 export const Router = () => {
+  const [authed, setAuthed] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const handleInitApp = async () => {
+    await firebase.auth().onAuthStateChanged((user) => {
+      setAuthed(user);
+      setLoading(false);
+    });
+  };
+  useEffect(() => {
+    handleInitApp();
+  }, []);
+
+  if (loading) return <CircularProgress />;
+
   return (
     <BrowserRouter>
       <ul>
@@ -26,22 +49,28 @@ export const Router = () => {
       </ul>
 
       <Switch>
-        <Route exact path={ROUTES.PROFILE}>
+        <PrivateRoute exact path={ROUTES.PROFILE} authed={authed}>
           <Profile />
-        </Route>
-        <Route path={ROUTES.CHATS}>
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.CHATS} authed={authed}>
           <Chats />
-        </Route>
-        <Route exact path={ROUTES.MAIN}>
+        </PrivateRoute>
+        <PrivateRoute exact path={ROUTES.MAIN} authed={authed}>
           <App />
-        </Route>
-        <Route exact path={ROUTES.DOGS}>
+        </PrivateRoute>
+        <PrivateRoute exact path={ROUTES.DOGS} authed={authed}>
           <Dogs />
-        </Route>
+        </PrivateRoute>
+        <PublicRoute exact path={ROUTES.SIGNUP} authed={authed}>
+          <Signup />
+        </PublicRoute>
+        <PublicRoute exact path={ROUTES.SIGNIN} authed={authed}>
+          <Signin />
+        </PublicRoute>
 
-        <Route exact path={ROUTES.NOCHAT}>
+        <PrivateRoute exact path={ROUTES.NOCHAT} authed={authed}>
           No chat
-        </Route>
+        </PrivateRoute>
         <Route path={ROUTES.NOT_FOUND}>Page not found</Route>
         <Route>
           <Redirect exact to={ROUTES.NOT_FOUND} />

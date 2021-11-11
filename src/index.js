@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Router } from "./Routing/Router";
 import { persistor, store } from "./Store";
 import "./index.css";
+import "./Services/firebase";
 
 export const MyContext = createContext({ color: "red" });
 export const MyAnotherContext = createContext({ color: "red" });
